@@ -3,13 +3,14 @@ package com.example.demo
 import io.kotest.core.config.AbstractProjectConfig
 import io.kotest.core.extensions.SpecExtension
 import io.kotest.core.extensions.TestCaseExtension
+import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.Spec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.core.test.TestType
+import io.kotest.extensions.spring.*
 import io.kotest.extensions.spring.Properties
-import io.kotest.extensions.spring.SpringTestContextCoroutineContextElement
-import io.kotest.extensions.spring.testContextManager
+import io.kotest.extensions.spring.SpringTestExtension
 import kotlinx.coroutines.withContext
 import net.bytebuddy.ByteBuddy
 import net.bytebuddy.description.modifier.Visibility
@@ -22,7 +23,8 @@ import java.util.*
 import kotlin.reflect.KClass
 
 class ProjectConfig : AbstractProjectConfig() {
-    override fun extensions() = listOf(SpringTestExtension())
+    override val isolationMode: IsolationMode = IsolationMode.SingleInstance
+    override fun extensions() = listOf(SpringTestExtension(SpringTestLifecycleMode.Test))
 }
 
 class SpringTestExtension : TestCaseExtension,
