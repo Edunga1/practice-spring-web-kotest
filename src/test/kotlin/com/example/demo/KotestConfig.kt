@@ -1,4 +1,4 @@
-package com.example.kotestcallbacks
+package com.example.demo
 
 import io.kotest.core.config.AbstractProjectConfig
 import io.kotest.core.extensions.SpecExtension
